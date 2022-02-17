@@ -623,8 +623,559 @@
     cout<<endl; 
      } 
      }
+		 
+		        
+	program 2:
+     
+			#include<iostream>
+			using namespace std;
+			struct Node{
+			int value;
+			struct Node *next;
+			};
+			struct Node* head = NULL;
+			struct Node* sHead = NULL;
+			struct Node* temp = NULL;
+			void insert(int new_data){
+			struct Node* new_node = new Node(); //(struct Node*)malloc(sizeof(struct Node));
+			new_node->value = new_data;
+			new_node->next = head;
+			head = new_node;
+			}
+			int n;
+			int ele;
+			int splitIndex;
+			int main(){
+			int i;
+			cout<<"Enter number of elements you want in the list\t";
+			cin>>n;
+			cout<<"Enter elements :" <<endl;
+			for(i=0;i<n;i++){
+			cin>>ele;
+			insert(ele);
+			}
+			cout<<"\nList of elements : "<<endl;
+			Node *t;
+			t = head;
+			while(t != NULL){
+			cout<<t->value<<"\t";
+			t = t->next;
+			}
+			cout<<"\n\nEnter the position you want the list to split ";
+			cin>>splitIndex;
+			while(splitIndex < 0 || splitIndex > n-1){
+			cout<<"Invalid position. Try again."<<endl;
+			cin>>splitIndex;
+			}
+			temp = head;
+			for(i=0;i<=splitIndex;i++){
+			if(i==splitIndex-1){
+			Node *tN;
+			tN = temp->next;
+			sHead = tN;
+			temp->next = NULL;
+			break;
+			}
+			temp = temp->next;
+			}
+			temp = head;
+			if(temp == NULL){
+			cout<<"\nFirst list is empty"<<endl;
+			}else{
+			cout<<"\n\nFirst list element "<<endl;
+			while(temp != NULL){
+			cout<<temp->value<<"\t";
+			temp = temp->next;
+			}
+			}
+			temp = sHead;
+			if(temp == NULL){
+			cout<<"\nSecond list is empty"<<endl;
+			}else{
+			cout<<"\n\nSecond list elements "<<endl;
+			while(temp != NULL){
+			cout<<temp->value<<"\t";
+			temp = temp->next;
+			}
+			}
+			return 0;
+			}
+
   
      
+    program 3:
    
+   
+   			#include<iostream.h>
+			#include<conio.h>
+			#include<iomanip.h>
+			#include<stdio.h>
+			#include<stdlib.h>
+			struct node
+			{
+				int info;
+				struct node *next;
+			}*first, *last;
+			int count = 0;
+			class singly
+			{
+				public:
+					node* create_node(int);
+					void insert_begin();
+					void insert_end();
+					void insert_pos();
+					void display();
+					void search();
+					singly()
+					{
+						first = NULL;
+						last = NULL;
+					}
+			};
+			void main()
+			{
+				int choice;
+				clrscr();
+				singly sl,s2;
+				do
+				{
+					cout<<"\t\t\t--------------------------------"<<endl;
+					cout<<"\t\t\tOperations on singly linked list"<<endl;
+					cout<<"\t\t\t--------------------------------"<<endl;
+					cout<<"1.Insert at first\t";
+					cout<<"2.Insert at Last\t";
+					cout<<"3.Insert at Position"<<endl;
+					cout<<"4.Search\t\t";
+					cout<<"5.Display\t\t";
+					cout<<"6.Exit\t\t\t"<<endl;
+					cout<<"Enter your choice : ";
+					cin>>choice;
+					switch(choice)
+					{
+						case 1:	sl.insert_begin();
+							s2.display();
+							break;
+						case 2:	sl.insert_end();
+							s2.display();
+							break;
+						case 3:	sl.insert_pos();
+							s2.display();
+							break;
+						case 4:sl.search();
+							s2.display();
+							break;
+						case 5:s2.display();
+							break;
+						case 6:cout<<"Successfully Exited"<<endl;
+							s2.display();
+							exit(0);
+							break;
+						default:cout<<"Wrong Choice...???"<<endl;
+							s2.display();
+							break;
+					}
+				}
+				while(choice != 20);
+				getch();
+			}
+			node* singly :: create_node(int num)
+			{
+				struct node *nn;
+				nn = new(struct node);
+				if (nn == NULL)
+				{
+					cout<<"Memory not allocated"<<endl;
+					return 0;
+				}
+				else
+				{
+					nn->info = num;
+					nn->next = NULL;
+					return nn;
+				}
+			}
+			void singly :: insert_begin()
+			{
+				int value;
+				struct node *temp;
+				cout<<"Enter the element to be inserted : ";
+				cin>>value;
+				temp = create_node(value);
+				if ( first == last && first == NULL )
+				{
+					count++;
+					first = last = temp;
+					first->next = last->next = temp->next;
+					cout<<first->info<<" inserted at first in the empty list"<<endl;
+				}
+				else
+				{
+					count++;
+					temp->next = first;
+					first = temp;
+					cout<<first->info<<" inserted at first"<<endl;
+				}
+			}
+			void singly :: insert_end()
+			{
+				int value;
+				struct node *temp;
+				cout<<"Enter the element to be inserted : ";
+				cin>>value;
+				temp = create_node(value);
+				if ( first == last && first == NULL )
+				{
+					count++;
+					first = last = temp;
+					first->next = last->next = temp->next;
+					cout<<last->info<<" inserted at first in the empty list"<<endl;
+				}
+				else
+				{
+					count++;
+					last->next = temp;
+					last = temp;
+					cout<<last->info<<" inserted at last"<<endl;
+				}
+			}
+			void singly :: insert_pos()
+			{
+				int value, pos;
+				struct node *temp, *f, *l;
+				cout<<"Enter the element to be inserted : ";
+				cin>>value;
+				temp = create_node(value);
+				if ( first == NULL && last == NULL )
+				{
+					cout<<"The list is empty, Pls enter the position [ SAY 1 ] : ";
+					cin>>pos;
+					if ( pos == 1 )
+					{
+						count++;
+						first = last = temp;
+						first->next = last->next = temp->next;
+						cout<<temp->info<<" inserted at first in the empty list"<<endl;
+					}
+					else
+						cout<<"Invalid Position"<<endl;
+				}
+				else
+				{
+					cout<<"Enter the position from 1 to "<<count + 1<<" : ";
+					cin>>pos;
+					if ( pos == 1 )
+					{
+						count++;
+						temp->next = first;
+						first = temp;
+						cout<<first->info<<" inserted at first"<<endl;
+					}
+					else if ( pos == count + 1 )
+					{
+						count++;
+						last->next = temp;
+						last = temp;
+						cout<<last->info<<" inserted at last"<<endl;
+					}
+					else if (pos > 1  && pos <= count)
+					{
+						f = first;
+						for ( int i = 1 ; i <= pos - 1 ; i++ )
+						{
+							l = f;
+							f = f->next;
+						}
+						count++;
+						l->next = temp;
+						temp->next = f;
+						cout<<temp->info<<" inserted at position "<<pos<<endl;
+					}
+					else
+						cout<<"Position out of range"<<endl;
+				}
+			}
+			void singly :: display()
+			{
+				struct node *temp;
+				if ( first == NULL && last == NULL )
+				{cout<<"The list is empty...!!!"<<endl;}
+				else
+				{
+					temp = first;
+					cout<<"Linked list of "<<count<<" elements : ";
+					for ( int i = 1 ; i < count ; i++ )
+					{
+						cout<<temp->info<<"->";
+						temp = temp->next;
+					}
+					cout<<temp->info<<endl;
+				}
+			}
+			void singly :: search()
+			{
+				int pos = 0, flag = 0, value;
+				struct node *f;
+				if ( first == NULL && last == NULL ) {}
+				else
+				{
+					cout<<"Enter the value to be searched : ";
+					cin>>value;
+					f = first;
+					for (int i = 0; i < count; i++)
+					{
+						pos++;
+						if (f->info == value)
+						{
+							flag++;
+							if (flag == 1)
+								cout<<"Element "<<value<<" found at position : "<<pos;
+							else if (flag > 1 && flag <= count)
+								cout<<" , "<<pos;
+						}
+						f = f->next;
+					}
+					if (flag == 0)
+						cout<<"Element "<<value<<" not found in the list"<<endl;
+					else if (flag == 1)
+						cout<<endl<<"Element "<<value<<" entered "<<flag<<" time"<<endl;
+					else
+						cout<<endl<<"Element "<<value<<" entered "<<flag<<" times"<<endl;
+				}
+			}
+			
+
+
+
+    program 4
+    
+    			#include <iostream.h>
+			#include <stdio.h>
+			#include <stdlib.h>
+			#include <conio.h>
+			void findMinAndMax(int arr[], int low, int high, int &min, int &max)
+			{
+			if (low == high)	
+			{
+			if (max < arr[low])
+			{
+			max = arr[low];
+			}
+			
+			if (min > arr[high])
+			{
+			min = arr[high];
+			}
+			return;
+			}
+			if (high - low == 1)	
+			{
+			if (arr[low] < arr[high])	
+			{
+			if (min > arr[low])
+			 {
+			min = arr[low];
+			}
+			
+			if (max < arr[high])
+			{
+			max = arr[high];
+			}
+			}
+			else {
+			if (min > arr[high])
+			{
+			min = arr[high];
+			}
+			
+			if (max < arr[low])
+			{
+			max = arr[low];
+			}
+			}
+			return;
+			}
+			int mid = (low + high) / 2;
+			findMinAndMax(arr, low, mid, min, max);
+			findMinAndMax(arr, mid + 1, high, min, max);
+			}
+			int main()
+			{
+			clrscr();
+			int arr[] = { 7, 2, 9, 3, 6, 7, 8, 4 };
+			int n = sizeof(arr) / sizeof(arr[0]);
+			int max = arr[0], min = arr[0];
+			
+			findMinAndMax(arr, 0, n - 1, min, max);
+			
+			cout << "The minimum array element is " << min << endl;
+			cout << "The maximum array element is " << max;
+			
+			return 0;
+			}
+			
+
+    
+    
+    
+    
+    program 5
+    
+    #include<iostream> 
+			using namespace std; 
+			int unsorted_array[10]; 
+			int ele; 
+			int ith_large = 0; 
+			int n = 10; 
+			int * sortarr(int arr[], int sizeofarr){ 
+			 for(int i=0;i<sizeofarr;i++){ 
+			 for(int j=i+1;j<sizeofarr;j++){ 
+			 if(arr[j] < arr[i]){ 
+			 int tmp = arr[i]; 
+			 arr[i] = arr[j]; 
+			 arr[j] = tmp; 
+			 } 
+			 } 
+			 } 
+			 return arr; 
+			} 
+			int findIthLargest(int ith_large, int arr[], int sizeofarr){ 
+			 arr = sortarr(arr, sizeofarr); 
+			
+			return arr[sizeofarr-ith_large-1];
+			} 
+			int main(){ 
+			 cout<<"Enter array elements "<<endl; 
+			 int sizeofarr = n; 
+			 for(int i=0;i<sizeofarr;i++){ 
+			 cin>>ele; 
+			 unsorted_array[i] = ele; 
+			 } 
+			 cout<<"Enter the position of ith largest element you want to find \t"; 
+			 cin>>ith_large; 
+			 ith_large = ith_large-1; 
+			 if(ith_large < 0){ 
+			 cout<<"Position has to be greater than 0"; 
+			 }else if(ith_large > sizeofarr){ 
+			 cout<<"Position doesn't exist"; 
+			 }else{ 
+			 int ith_largest = findIthLargest(ith_large, unsorted_array, sizeofarr); 
+			 cout<<"Array elements "<<endl; 
+			 for(int i=0;i<sizeofarr;i++){ 
+			 cout<<unsorted_array[i]<<"\t"; 
+			 } 
+			 cout<<"\n"<<ith_large+1<<"th largest element in the array is " << ith_largest; 
+			 } 
+			 return 0; 
+			} 
 
         
+    program 6
+   			#include <bits/stdc++.h>
+			using namespace std;
+			struct Node
+			{
+			int data;
+			struct Node* left, *right;
+			Node(int data)
+			{
+			this->data = data;
+			left = right = NULL;
+			}
+			};
+			bool isBSTUtil(struct Node* root, Node *&prev)
+			{
+			if (root)
+			{
+			if (!isBSTUtil(root->left, prev))
+			return false;
+			if (prev != NULL && root->data <= prev->data)
+			return false;
+			prev = root;
+			return isBSTUtil(root->right, prev);
+			}
+			return true;
+			}
+			bool isBST(Node *root)
+			{
+			Node *prev = NULL;
+			return isBSTUtil(root, prev);
+			}
+			int main()
+			{
+			struct Node *root = new Node(7);
+			root->left = new Node(5);
+			root->right = new Node(8);
+			root->left->left = new Node(3);
+			root->left->right = new Node(6);
+			if (isBST(root))
+			cout << "Is BST";
+			else
+			cout << "Not a BST";
+			return 0;
+			}
+			
+
+
+      program 7:
+      
+      		#include <iostream>
+			using namespace std;
+			void MaxHeapify (int a[], int i, int n)
+			{
+				int j, temp;
+				temp = a[i];
+				j = 2*i;
+				while (j <= n)
+				{
+					if (j < n && a[j+1] > a[j])
+					j = j+1;
+					if (temp > a[j])
+						break;
+					else if (temp <= a[j])
+					{
+						a[j/2] = a[j];
+						j = 2*j;
+					}
+				}
+				a[j/2] = temp;
+				return;
+			}
+			void HeapSort(int a[], int n)
+			{
+				int i, temp;
+				for (i = n; i >= 2; i--)
+				{
+					temp = a[i];
+					a[i] = a[1];
+					a[1] = temp;
+					MaxHeapify(a, 1, i - 1);
+				}
+			}
+			void Build_MaxHeap(int a[], int n)
+			{
+				int i;
+				for(i = n/2; i >= 1; i--)
+					MaxHeapify(a, i, n);
+			}
+			int main()
+			{
+			int n, i,arr[100];
+				cout<<"\nEnter the number of data element to be sorted: ";
+				cin>>n;
+				n++;
+				for(i=1;i<n;i++)
+				 {
+				 cout<<"Enter element"<<i<<":";
+				 cin>>arr[i];
+				 }
+				Build_MaxHeap(arr, n-1);
+				HeapSort(arr, n-1);
+				cout<<"\nSorted Data ";
+				for (i = 1; i < n; i++)
+					cout<<" "<<arr[i];
+				return 0;
+			}
+
+
+
+   
