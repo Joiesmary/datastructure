@@ -1651,9 +1651,7 @@
 			return false;
 			prev = root;
 			return isBSTUtil(root->right, prev);
-			}
-			return true;
-			}
+			}Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique.
 			bool isBST(Node *root)
 			{
 			Node *prev = NULL;
@@ -1682,6 +1680,143 @@
 			
 ![image](https://user-images.githubusercontent.com/19484531/155078919-3639604a-cabc-4c8a-80a5-af4f74e705fd.png)
 
+
+
+    5)Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique.
+    
+    
+    #include<iostream>
+    #include<limits.h>
+    using namespace std;
+     void Insert(int ary[],int hFn, int Size)
+     {
+      int element,pos,n=0;
+      cout<<"Enter key element to insert\n";
+      cin>>element;
+      pos = element%hFn; 
+      while(ary[pos]!= INT_MIN)
+	   {  
+            if(ary[pos]== INT_MAX)
+            break;
+            pos = (pos+1)%hFn;
+            n++;
+            if(n==Size)
+            break;     
+        }
+      if(n==Size)
+        cout<<"Hash table was full of elements\nNo Place to insert this element\n\n";
+      else
+        ary[pos] = element;    
+    }
+    void display(int ary[],int Size) 
+     {
+    int i;
+ 
+    cout<<"Index\tValue\n";
+    for(i=0;i<Size;i++)
+    cout<<i<<"\t"<<ary[i]<<"\n";
+    }
+    int main() 
+    {
+    int Size,hFn,i,choice;
+    cout<<"Enter size of hash table\n";
+    cin>>Size;
+    hFn=Size;
+    int ary[Size];
+    for(i=0;i<Size;i++)
+        ary[i]=INT_MIN; 
+    do
+     {
+        cout<<"Enter your choice\n";
+        cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
+        cin>>choice;
+        switch(choice) 
+	   {
+           case 1:
+           Insert(ary,hFn,Size);
+           break;
+           case 2:
+           display(ary,Size);
+           break;
+           default:
+           cout<<"Enter correct choice\n";
+           break;
+        }
+    }while(choice);
+     return 0;
+    }
+    
+![image](https://user-images.githubusercontent.com/19484531/155933651-07ffb403-8ad9-4237-ace8-37dcde0cfd33.png)
+
+ 
+    6)Write a C++ Program to find minimum and maximum element from an unsorted array using Divide and Conquer method.
+    
+    #include <iostream>
+    #include <stdio.h>
+     #include <stdlib.h>
+     #include <conio.h>
+     using namespace std; 
+    void findMinAndMax(int arr[], int low, int high, int &min, int &max)
+    {
+     if (low == high)	
+     {
+      if (max < arr[low])
+      {
+        max = arr[low];
+      }
+      if (min > arr[high])
+      {
+        min = arr[high];
+      }
+      return;
+     }  
+      if (high - low == 1)	
+     {
+        if (arr[low] < arr[high])	
+        {
+           if (min > arr[low])
+           {
+               min = arr[low];
+           }
+
+           if (max < arr[high])
+           {
+               max = arr[high];
+           }
+        }  
+        else 
+	   {
+           if (min > arr[high])
+           {  
+              min = arr[high];
+           }
+
+           if (max < arr[low])
+           {
+               max = arr[low];
+           }
+        }
+        return;
+    } 
+     int mid = (low + high) / 2;
+    findMinAndMax(arr, low, mid, min, max);
+    findMinAndMax(arr, mid + 1, high, min, max);
+    }
+    int main()
+    {
+    clrscr();
+    int arr[] = { 7, 2, 9, 3, 6, 7, 8, 4 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int max = arr[0], min = arr[0];
+
+    findMinAndMax(arr, 0, n - 1, min, max);
+
+    cout << "The minimum array element is " << min << endl;
+    cout << "The maximum array element is " << max;
+
+    return 0;
+    }
+ ![image](https://user-images.githubusercontent.com/19484531/155933165-ed7866e3-c22c-46aa-9d60-ad2517861d95.png)
 
 
 
