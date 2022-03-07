@@ -1893,3 +1893,108 @@
 
 ![image](https://user-images.githubusercontent.com/19484531/155936278-4b5f38bc-daa9-4856-9c9a-b5ab272a7f86.png)
 
+     8)Write C++ program for implementing the max Heap and min heap  Sort technique.
+     #include <iostream>
+     using namespace std;
+    void MaxHeapify (int *a, int m, int n) {
+    int j, t;
+    t = a[m];
+    j = 2 * m;
+    while (j <= n) {
+       if (j < n && a[j+1] > a[j])
+         j = j + 1;
+      if (t > a[j])
+         break;
+      else if (t <= a[j]) {
+         a[j / 2] = a[j];
+         j = 2 * j;
+      }
+    }
+    a[j/2] = t;
+    return;
+    }
+    void MinHeapify (int *a,int i, int n)
+    {
+     int j, temp;
+    temp = a[i];
+    j = 2*i;
+    while (j <= n)
+    {
+  	  if (j < n && a[j+1] < a[j])
+  	  j = j+1;
+  	  if (temp < a[j])
+			break;
+	else if (temp >= a[j])
+	{
+	    a[j/2] = a[j];
+	    j = 2*j;
+    } 
+    }
+    a[j/2] = temp;
+	return;
+    }
+
+    /*void HeapSort(int a[], int n)
+     {
+	int i, temp;
+	for (i = n; i >= 2; i--)
+	{
+		temp = a[i];
+		a[i] = a[1];
+		a[1] = temp;
+		MaxHeapify(a, 1, i - 1);
+	}
+	} */
+  
+    void build_maxheap(int *a,int n) {
+     int k;
+     for(k = n/2; k >= 1; k--) {
+      MaxHeapify(a,k,n);
+      }
+    }
+    void Build_MinHeap(int *a, int n)
+    {
+	int i;
+	for(i = n/2; i >= 1; i--)
+	{
+	
+		MinHeapify(a, i, n);
+	}
+	
+    }
+
+    int main()
+    {
+        int n, i,arr[100];
+	cout<<"\nEnter the number of data element to be sorted: ";
+	cin>>n;
+	//n++;
+	for(i=1;i<=n;i++)
+	 {
+	 cout<<"Enter element"<<i<<":";
+	 cin>>arr[i];
+	 }
+	 
+	 
+	Build_MinHeap(arr, n);
+	cout<<"\nMin heap Sorted Data \n";//correct
+	for (i = 1; i <= n; i++)
+	{
+	
+		cout<<" "<<arr[i];
+	}
+	
+      build_maxheap(arr,n);
+      cout<<"\nMax Heap\n";
+     for (i = 1; i <= n; i++) {
+      cout<<arr[i]<<endl;
+     }
+ 
+    }
+    
+    
+    out put:
+   ![image](https://user-images.githubusercontent.com/19484531/156980110-84b7f7b6-7ba3-4ea9-bf85-aa45bac5f23c.png)
+
+    
+
