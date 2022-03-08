@@ -1994,7 +1994,8 @@
     
     
     out put:
- ![image](https://user-images.githubusercontent.com/19484531/157171620-8af6aba3-cb7d-4cc8-b35c-6f4993a9738a.png)
+![image](https://user-images.githubusercontent.com/19484531/157172268-06d8422b-4904-4d75-bb15-9dae3a756082.png)
+
 
 
     9)Write a program to implement heap sort
