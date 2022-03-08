@@ -1984,7 +1984,7 @@
 		cout<<" "<<arr[i];
 	}
 	
-      build_maxheap(arr,n);
+      build_maxheap(arr,n-1);
       cout<<"\nMax Heap\n";
      for (i = 1; i <= n; i++) {
       cout<<arr[i]<<endl;
@@ -1994,7 +1994,69 @@
     
     
     out put:
-   ![image](https://user-images.githubusercontent.com/19484531/156980110-84b7f7b6-7ba3-4ea9-bf85-aa45bac5f23c.png)
+ ![image](https://user-images.githubusercontent.com/19484531/157171620-8af6aba3-cb7d-4cc8-b35c-6f4993a9738a.png)
 
-    
+
+    9)Write a program to implement heap sort
+    #include <iostream>
+     using namespace std;
+    void MaxHeapify (int a[], int i, int n)
+     {
+	int j, temp;
+	temp = a[i];
+	j = 2*i;
+	while (j <= n)
+	{
+		if (j < n && a[j+1] > a[j])
+		j = j+1;
+		if (temp > a[j])
+			break;
+		else if (temp <= a[j])
+		{
+			a[j/2] = a[j];
+			j = 2*j;
+		}
+	}
+	a[j/2] = temp;
+	return;
+    }
+    void HeapSort(int a[], int n)
+     {
+	int i, temp;
+	for (i = n; i >= 2; i--)
+	{
+		temp = a[i];
+		a[i] = a[1];
+		a[1] = temp;
+		MaxHeapify(a, 1, i - 1);
+	}
+    }
+    void Build_MaxHeap(int a[], int n)
+      {
+	int i;
+	for(i = n/2; i >= 1; i--)
+		MaxHeapify(a, i, n);
+    }
+    int main()
+    {
+    int n, i,arr[100];
+	cout<<"\nEnter the number of data element to be sorted: ";
+	cin>>n;
+	n++;
+	for(i=1;i<n;i++)
+	 {
+	 cout<<"Enter element"<<i<<":";
+	 cin>>arr[i];
+	 }
+	Build_MaxHeap(arr, n-1);
+	HeapSort(arr, n-1);
+	cout<<"\nSorted Data ";
+	for (i = 1; i < n; i++)
+		cout<<" "<<arr[i];
+	return 0;
+    }
+o/p:
+
+![image](https://user-images.githubusercontent.com/19484531/157171763-025fb869-d90b-4760-8814-9af154fd6f79.png)
+
 
