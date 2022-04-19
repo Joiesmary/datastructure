@@ -625,7 +625,7 @@
      }
 		 
 		        
-	program 2:
+	program 2: Write a C++ program to split the linked list into two halves such that the element ‘e’ should be the first element of second list.
      
 			#include<iostream>
 			using namespace std;
@@ -946,7 +946,7 @@
 
 
 
-    program 4
+    program 3:Write a C++ program to find minimum and maximum element from an unsorted array using divide and conquer method.
     
     			#include <iostream.h>
 			#include <stdio.h>
@@ -1069,7 +1069,7 @@
 			} 
 
         
-    program 6
+    program 4:Write a C++ program to check if a binary tree is BST or not
    			#include <bits/stdc++.h>
 			using namespace std;
 			struct Node
@@ -1116,7 +1116,7 @@
 			
 
 
-      program 7:
+      program 5:Write a C++ program for implementing Heap sort technique.
       
       		#include <iostream>
 			using namespace std;
